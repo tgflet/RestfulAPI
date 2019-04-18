@@ -29,7 +29,7 @@ class Tasks{
         });
     }
     delete(req, res){
-        Task.remove({_id: req.params._id}, (err)=>{
+        Task.deleteOne({_id: req.params._id}, (err)=>{
             if(err){
                 console.log(err);
             }

@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+body{
+  background-color: aliceblue;
+}
+
+.TitleText{
+  color: cornflowerblue;
+  font-family: cursive;
+}
+.beta{
+  color: tomato;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+ul{
+  list-style-type: none;
+}
+.Memo{
+  width: 350px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: lightcyan;
+  margin: 10px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Delete{
+  color: red;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+}
+.Completed{
+  text-decoration: line-through;
+}
+
+

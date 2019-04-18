@@ -1,9 +1,9 @@
 const Tasks = require("../controllers/tasks");
 
 module.exports = function(app){
-    app.get('/', Tasks.getAll);
-    app.post('/', Tasks.create);
-    app.get('/:_id', Tasks.getOne);
-    app.delete('/:_id',Tasks.delete);
-    app.put('/:_id', Tasks.update);
+    app.get('/task', Tasks.getAll);
+    app.post('/task', Tasks.create);
+    app.get('/task/:_id', Tasks.getOne);
+    app.delete('/task/:_id',Tasks.delete);
+    app.put('/task/:_id', Tasks.update);
 }
