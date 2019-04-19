@@ -16,6 +16,10 @@ body{
 }
 ul{
   list-style-type: none;
+  padding-left: 0px
+}
+button{
+  outline: none;
 }
 .Memo{
   width: 350px;
@@ -39,5 +43,34 @@ ul{
 .Completed{
   text-decoration: line-through;
 }
-
-
+.taskForm{
+  width: 350px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: rgb(240, 255, 255);
+  margin: 10px auto;
+  padding: 20px;
+}
+.taskInput{
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+}
+.addTask{
+  background-color: lightskyblue;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 12px;
+}
+.FilterBox{
+  width: 350px;
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-between;
+}
+.selected{
+  background-color: blueviolet;
+  color: white;
+}

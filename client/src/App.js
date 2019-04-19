@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import "react-router";
+import {BrowserRouter,
+    Route,
+    Link
+  } from 'react-router-dom';
 import List from './components/List';
 
 class App extends Component {
@@ -12,10 +17,13 @@ class App extends Component {
       newTask : {
         task: ""
       }
+
+
     }
   }
   componentDidMount = () =>{
     this.getTasks();
+    this.useAll();
     console.log('present')
   }
   getTasks = () => {
@@ -60,20 +68,72 @@ class App extends Component {
         console.log(err);
       });
   }
-
+  removeTag = () =>{
+    const list = document.getElementsByClassName("addTask");
+    for(let i = 0; i< list.length; i++){
+      if(list[i].classList.length>1){
+        list[i].classList.remove("selected")
+      }
+      // console.log(list[i].classList.length)
+      // list[i].classList.add("addTask")  
+    }
+    ;
+  }
+  useAll = () => {
+    this.removeTag();
+    const element = document.getElementById("allButton");
+    element.classList.add("selected");
+  }
+  useActive = () =>{
+    this.removeTag();
+    const element = document.getElementById("activeButton");
+    element.classList.add("selected");
+  }
+  useComplete = () =>{
+    this.removeTag();
+    const element = document.getElementById("completeButton");
+    element.classList.add("selected");
+  }
   render() {
     return (
       <div className="App">
       
        <h1 className="TitleText">To Do List<span className="beta"> - (beta)</span></h1>
-        <List arr = {this.state.tasks} 
+       <BrowserRouter>
+       <div className="FilterBox">
+        
+        <Link to ="/"><button id = "allButton" onClick={this.useAll} className="addTask">All Tasks</button></Link>
+        <Link to ="/active"><button id = "activeButton" onClick={this.useActive} className="addTask">Active Tasks</button></Link>
+        <Link to ="/completed"><button id = "completeButton" onClick={this.useComplete} className="addTask">Completed Task</button></Link>
+        
+        
+       </div>
+       <Route exact path="/"
+        render = {(props)=> 
+        <List {...props} arr = {this.state.tasks} 
+        condition = "all"
         onAchieve={this.achieve}
-        onDelete={this.remove}/>
+        onDelete={this.remove}/>}/>
+      <Route exact path="/active"
+        render = {(props)=> 
+        <List {...props} arr = {this.state.tasks} 
+        condition = "active"
+        onAchieve={this.achieve}
+        onDelete={this.remove}/>}/>
+      <Route path="/completed"
+        render = {(props)=> 
+        <List {...props} arr = {this.state.tasks} 
+        condition = "completed"
+        onAchieve={this.achieve}
+        onDelete={this.remove}/>}/>
+       </BrowserRouter>
         <form onSubmit={this.createTask}>
-          <p>New Task:&nbsp;
-          <input type="text" onChange={this.setTask} value={this.state.newTask.task}/>
-          </p>
-          <input type="submit" value="Add Task!"/>
+        <fieldset className ="taskForm">
+          <span>New Task:&nbsp;</span>
+          <br />
+          <input type="text" className="taskInput" onChange={this.setTask} value={this.state.newTask.task}/>
+          <input type="submit" className="addTask" value="Add Task!"/>
+          </fieldset>
         </form>
       </div>
     );
